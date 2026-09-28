@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isorre Clan Office</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: #cfe7d9 url('https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1800&q=30') center/cover fixed;
+            background-blend-mode: soft-light
+        }
+
+        .app-shell {
+            background: rgba(219, 239, 228, .84)
+        }
+
+        .main-content {
+            background: rgba(239, 248, 242, .72)
+        }
+
+        .topbar-leading {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px
+        }
+
+        .back-btn {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--line);
+            border-radius: 50%;
+            background: #fff;
+            color: var(--teal);
+            font-size: 20px;
+            line-height: 1;
+            cursor: pointer;
+            margin-top: 3px;
+            transition: .2s
+        }
+
+        .back-btn:hover {
+            background: var(--mint);
+            transform: translateX(-2px)
+        }
+
+        .login-screen {
+            min-height: 100vh;
+            background: #d8eee1 url('https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1800&q=35') center/cover;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background-blend-mode: soft-light
+        }
+
+        .login-art {
+            background: linear-gradient(90deg, rgba(23, 59, 57, .94), rgba(23, 59, 57, .72)), url('https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1200&q=55') center/cover;
+            color: #e8f1ed;
+            padding: 12vh 9vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden
+        }
+
+        .login-art:after {
+            content: '';
+            position: absolute;
+            width: 430px;
+            height: 430px;
+            border: 1px solid rgba(217, 238, 230, .14);
+            border-radius: 50%;
+            right: -160px;
+            bottom: -140px
+        }
+
+        .login-emblem {
+            width: 58px;
+            height: 58px;
+            border-radius: 18px;
+            background: #ecb36d;
+            color: #173b39;
+            display: grid;
+            place-items: center;
+            font: 700 36px 'Playfair Display', serif;
+            margin-bottom: 70px
+        }
+
+        .login-art h1 {
+            font: 700 clamp(42px, 5vw, 76px)/.98 'Playfair Display', serif;
+            margin: 0
+        }
+
+        .login-art h1 i {
+            color: #ecb36d;
+            font-weight: 600
+        }
+
+        .login-quote {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #abc2ba;
+            max-width: 300px;
+            margin: 25px 0 70px
+        }
+
+        .login-stamp {
+            color: #7ea59b;
+            font-size: 10px;
+            letter-spacing: 2px
+        }
+
+        .login-stamp span {
+            color: #ecb36d;
+            padding: 0 10px
+        }
+
+        .login-card {
+            align-self: center;
+            width: min(390px, 80%);
+            margin: auto
+        }
+
+        .login-brand {
+            margin: 0 0 60px
+        }
+
+        .login-card h2 {
+            font: 600 31px/1.1 'Playfair Display', serif;
+            margin: 0 0 10px
+        }
+
+        .login-copy {
+            color: var(--muted);
+            line-height: 1.6;
+            margin: 0 0 26px
+        }
+
+        .login-card .field {
+            margin-bottom: 16px
+        }
+
+        .login-submit {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px
+        }
+
+        .login-submit span {
+            font-size: 18px
+        }
+
+        .login-card small {
+            display: block;
+            color: var(--muted);
+            font-size: 10px;
+            margin-top: 14px;
+            text-align: center
+        }
+
+        .welcome-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            background: #e6f2eb;
+            border-color: #d5e8dd
+        }
+
+        .welcome-panel h2 {
+            font: 600 25px 'Playfair Display', serif;
+            margin: 0 0 5px
+        }
+
+        .welcome-panel p:not(.eyebrow) {
+            color: #55726a;
+            margin: 0
+        }
+
+        .welcome-subcopy {
+            display: block;
+            color: #55726a;
+            font-size: 12px;
+            margin-top: 5px
+        }
+
+        .welcome-mark {
+            font-size: 30px;
+            color: #d69d42;
+            padding-right: 8px
+        }
+
+        .login-screen.hidden,
+        .app-shell.hidden {
+            display: none
+        }
+
+        @media(max-width:850px) {
+            .login-screen {
+                grid-template-columns: 1fr
+            }
+
+            .login-art {
+                display: none
+            }
+
+            .login-card {
+                width: min(390px, 84%)
+            }
+        }
+
+        .home-page {
+            min-height: 62vh;
+            display: grid;
+            place-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(23, 59, 57, .94), rgba(34, 103, 83, .78)), url('https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1600&q=60') center/cover;
+            color: #fff;
+            border: 0
+        }
+
+        .home-page:before,
+        .home-page:after {
+            content: '';
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, .2);
+            border-radius: 50%;
+            animation: homeOrbit 12s linear infinite
+        }
+
+        .home-page:before {
+            width: 420px;
+            height: 420px;
+            right: -170px;
+            top: -140px
+        }
+
+        .home-page:after {
+            width: 260px;
+            height: 260px;
+            left: -120px;
+            bottom: -100px;
+            animation-direction: reverse;
+            animation-duration: 9s
+        }
+
+        .home-content {
+            max-width: 680px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 55px 24px;
+            animation: homeRise .8s ease both
+        }
+
+        .home-kicker {
+            color: #eeb86f;
+            letter-spacing: 2.5px;
+            font-size: 10px;
+            font-weight: 700;
+            animation: homeFade 1s .1s ease both
+        }
+
+        .home-title {
+            font: 700 clamp(42px, 6vw, 72px)/1 'Playfair Display', serif;
+            margin: 12px 0 18px;
+            animation: homeRise .8s .12s ease both
+        }
+
+        .home-title i {
+            color: #eeb86f;
+            font-weight: 600
+        }
+
+        .home-copy {
+            color: #d6e9df;
+            line-height: 1.8;
+            max-width: 480px;
+            margin: auto;
+            animation: homeRise .8s .22s ease both
+        }
+
+        .home-actions {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 28px;
+            animation: homeRise .8s .32s ease both
+        }
+
+        .home-actions .primary-btn {
+            background: #eeb86f;
+            color: #173b39
+        }
+
+        .home-actions .secondary-btn {
+            background: rgba(255, 255, 255, .14);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, .28)
+        }
+
+        .home-heart {
+            display: block;
+            color: #eeb86f;
+            font-size: 22px;
+            margin-top: 28px;
+            animation: homePulse 2.2s ease-in-out infinite
+        }
+
+        @keyframes homeRise {
+            from {
+                opacity: 0;
+                transform: translateY(22px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @keyframes homeFade {
+            from {
+                opacity: 0;
+                letter-spacing: 7px
+            }
+
+            to {
+                opacity: 1;
+                letter-spacing: 2.5px
+            }
+        }
+
+        @keyframes homePulse {
+
+            0%,
+            100% {
+                transform: scale(1)
+            }
+
+            50% {
+                transform: scale(1.18)
+            }
+        }
+
+        @keyframes homeOrbit {
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .home-page *,
+            .home-page:before,
+            .home-page:after {
+                animation: none !important
+            }
+        }
+
+        .signup-only {
+            display: none
+        }
+
+        .login-card.signup-mode .signup-only {
+            display: grid
+        }
+
+        .login-switch {
+            text-align: center;
+            color: var(--muted);
+            font-size: 11px;
+            margin: 17px 0 0
+        }
+
+        .login-switch button {
+            border: 0;
+            background: none;
+            color: var(--teal);
+            font: 700 11px 'DM Sans';
+            cursor: pointer;
+            padding: 0
+        }
+
+        .login-error {
+            color: #b65e4c;
+            font-size: 11px;
+            min-height: 16px;
+            text-align: center;
+            margin: 9px 0 0
+        }
+
+        .pending-panel {
+            max-width: 680px;
+            margin: 8vh auto;
+            text-align: center;
+            padding: 45px 30px
+        }
+
+        .pending-icon {
+            font-size: 38px;
+            color: #d69d42;
+            margin-bottom: 12px
+        }
+
+        .pending-panel h2 {
+            font: 600 28px 'Playfair Display', serif;
+            margin: 0 0 10px
+        }
+
+        .pending-panel p {
+            color: var(--muted);
+            line-height: 1.7;
+            margin: 0 auto 22px;
+            max-width: 470px
+        }
+
+        .logout-btn {
+            margin-top: 12px
+        }
+
+        .modal-backdrop[hidden] {
+            display: none
+        }
+
+        .info-lead {
+            font: 600 16px/1.6 'Playfair Display', serif;
+            color: var(--teal-dark);
+            margin: 0 0 20px
+        }
+
+        .info-section {
+            border-top: 1px solid var(--line);
+            padding: 16px 0 3px
+        }
+
+        .info-section h3 {
+            font: 600 16px 'Playfair Display', serif;
+            margin: 0 0 6px
+        }
+
+        .info-section p {
+            font-size: 13px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin: 0
+        }
+
+        .info-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 18px 0 22px
+        }
+
+        .info-points span {
+            background: var(--mint);
+            color: var(--teal-dark);
+            border-radius: 16px;
+            padding: 7px 10px;
+            font-size: 10px;
+            font-weight: 700
+        }
+    </style>
+</head>
+
+<body>
+    <section class="login-screen" id="loginScreen">
+        <div class="login-art">
+            <div class="login-emblem">I</div>
+            <p class="eyebrow">ISORRE CLAN OFFICE</p>
+            <h1>Keep the family<br><i>close.</i></h1>
+            <p class="login-quote">One place for every member, gathering, story, and shared memory.</p>
+            <div class="login-stamp">EST. 1978 <span>◆</span> TOGETHER ALWAYS</div>
+        </div>
+        <form class="login-card" id="loginForm">
+            <div class="brand login-brand">
+                <div class="brand-mark">I</div>
+                <div><strong>Isorre</strong><span>Clan office</span></div>
+            </div>
+            <p class="eyebrow" id="loginEyebrow">WELCOME BACK</p>
+            <h2 id="loginTitle">Sign in to your clan office</h2>
+            <p class="login-copy" id="loginCopy">Members must sign in before viewing clan records.</p>
+            <div class="field signup-only"><label>FULL NAME</label><input type="text" name="name"
+                    placeholder="e.g. Joseph Isorre"></div>
+            <div class="field"><label>EMAIL ADDRESS</label><input type="email" name="email" value="head@isorre.org"
+                    required></div>
+            <div class="field"><label>PASSWORD</label><input type="password" name="password" value="isorre2026"
+                    required></div><button class="primary-btn login-submit" id="loginSubmit" type="submit">Enter the
+                office <span>→</span></button>
+            <p class="login-switch"><span id="loginSwitchText">New to the clan office?</span> <button type="button"
+                    id="signupToggle">Create an account</button></p><small id="loginHint">Demo access: head@isorre.org /
+                isorre2026</small>
+            <p class="login-error" id="loginError" role="alert"></p>
+        </form>
+    </section>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-mark">I</div>
+                <div><strong>Isorre</strong><span>Clan office</span></div>
+            </div>
+            <nav class="nav-list" aria-label="Main navigation">
+                <button class="nav-item active" data-view="home"><span class="nav-icon">⌂</span>Home</button>
+                <button class="nav-item" data-view="overview"><span class="nav-icon">▦</span>Records dashboard</button>
+                <button class="nav-item" data-view="members"><span class="nav-icon">♧</span>Members</button>
+                <button class="nav-item" data-view="activities"><span class="nav-icon">✦</span>Activities</button>
+                <button class="nav-item" data-view="meetings"><span class="nav-icon">◷</span>Meetings <b
+                        class="nav-count" id="meetingBadge">0</b></button>
+                <button class="nav-item" data-view="gallery"><span class="nav-icon">▧</span>Gallery</button>
+                <button class="nav-item" data-view="head"><span class="nav-icon">♙</span>Clan head</button>
+            </nav>
+            <div class="sidebar-foot">
+                <div class="pulse-dot"></div>
+                <div><b>Clan records</b><span>Saved on this device</span></div>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="topbar">
+                <div class="topbar-leading"><button class="back-btn" id="backBtn" aria-label="Go back">←</button>
+                    <div>
+                        <p class="eyebrow">MONDAY, 21 SEPTEMBER 2026</p>
+                        <h1 id="pageTitle">Good morning, Isorre.</h1>
+                    </div>
+                </div>
+                <div class="top-actions"><button class="icon-btn" id="clanInfoBtn"
+                        aria-label="About Isorre clan">i</button><button class="icon-btn" id="notificationBtn"
+                        aria-label="View meeting notifications">♧<span class="alert-dot"></span></button><button
+                        class="avatar">IO</button></div>
+            </header>
+            <section id="appView" aria-live="polite"></section>
+        </main>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <div class="modal-backdrop" id="clanInfoModal" hidden>
+        <section class="modal" role="dialog" aria-modal="true" aria-labelledby="clanInfoTitle">
+            <div class="modal-header">
+                <div>
+                    <p class="eyebrow">THE ISORRE STORY</p>
+                    <h2 id="clanInfoTitle">About the Isorre clan</h2>
+                </div><button class="close-btn" data-close-info aria-label="Close clan information">×</button>
+            </div>
+            <p class="info-lead">A family connected by origin, memory, and the promise to look after one another.</p>
+            <div class="info-section">
+                <h3>Our origin</h3>
+                <p>Isorre is a close-knit family community shaped by shared roots, elders' wisdom, and traditions
+                    carried from one generation to the next. Our gatherings keep the stories, names, and values of the
+                    clan alive.</p>
+            </div>
+            <div class="info-section">
+                <h3>Why register?</h3>
+                <p>Registration gives every member a place in the family record. Members can receive meeting notices,
+                    follow clan activities, share gallery memories, and stay connected wherever life takes them.</p>
+            </div>
+            <div class="info-points"><span>♧ Belonging</span><span>◷ Staying connected</span><span>▧ Preserving
+                    memories</span></div><button class="primary-btn" data-close-info>Close</button>
+        </section>
+    </div>
+    <script src="ISOORE.js"></script>
+</body>
+
+</html>
